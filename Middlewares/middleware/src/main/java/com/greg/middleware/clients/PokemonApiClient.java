@@ -1,20 +1,23 @@
 package com.greg.middleware.clients;
 
 import com.greg.middleware.core.ApiClient;
+import com.greg.middleware.core.GenericApiMiddleware;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-@Configuration
-public class PokemonApiClient implements ApiClient {
-    private final RestTemplate restTemplate;
+@Component
+public class PokemonApiClient {
 
-    public PokemonApiClient(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    private final GenericApiMiddleware apiMiddleware;
+    private String url;
+
+    public PokemonApiClient(GenericApiMiddleware apiMiddleware) {
+        this.apiMiddleware = apiMiddleware;
+        url = "https://pokeapi.co/api/v2/";;
     }
 
-    @Override
-    public String fetchData(String endpoint) {
-        String url = "https://pokeapi.co/api/v2/" + endpoint;
-        return restTemplate.getForObject(url, String.class);
+    public String fetchDataFromApi(String endpoint) {
+        return apiMiddleware.fetchData(url + endpoint);
     }
 }

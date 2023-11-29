@@ -1,16 +1,18 @@
 package com.greg.middleware.core;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 @Component
-public class GenericApiMiddleware {
-    private final ApiClient apiClient;
+public class GenericApiMiddleware implements ApiClient {
+    private final RestTemplate restTemplate;
 
-    public GenericApiMiddleware(ApiClient apiClient) {
-        this.apiClient = apiClient;
+    public GenericApiMiddleware(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
-    public String fetchDataFromApi(String endpoint) {
-        return apiClient.fetchData(endpoint);
+    @Override
+    public String fetchData(String url) {
+        return restTemplate.getForObject(url, String.class);
     }
 }
