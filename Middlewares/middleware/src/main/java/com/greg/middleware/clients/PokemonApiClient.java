@@ -1,11 +1,15 @@
 package com.greg.middleware.clients;
 
-import com.greg.middleware.core.ApiClient;
 import com.greg.middleware.core.GenericApiMiddleware;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
+/*
+* Camada para estabelecer uma comunicação com o endpoint para uma api específica.
+*
+* @author Greg
+* @version 1.0
+* @since 2023-11-29
+* */
 @Component
 public class PokemonApiClient {
 
@@ -17,6 +21,12 @@ public class PokemonApiClient {
         url = "https://pokeapi.co/api/v2/";;
     }
 
+    /*
+    * Método para enviar a requisição para a api e retornar uma String com a resposta.
+    *
+    * @param String endpoint para comunicação
+    * @return String resposta da api
+    * */
     public String fetchDataFromApi(String endpoint) {
         return apiMiddleware.fetchData(url + endpoint);
     }
