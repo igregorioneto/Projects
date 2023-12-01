@@ -21,23 +21,23 @@ public class PokemonService {
     public String endpoint(PokemonRequest pokemonRequest) {
         String endpoint = "pokemon";
         if (pokemonRequest != null) {
-            if (pokemonRequest.getName() != null) {
-                endpoint += "/" + pokemonRequest.getName();
-            } else if (pokemonRequest.getSpeciesName() != null) {
-                endpoint = "pokemon-species/" + pokemonRequest.getSpeciesName();
-            } else if (pokemonRequest.getTypeId() != null) {
-                endpoint = "type/" + pokemonRequest.getTypeId();
-            } else if (pokemonRequest.getAbilityName() != null) {
-                endpoint = "ability/" + pokemonRequest.getAbilityName();
+            if (pokemonRequest.name() != null) {
+                endpoint += "/" + pokemonRequest.name();
+            } else if (pokemonRequest.speciesName() != null) {
+                endpoint = "pokemon-species/" + pokemonRequest.speciesName();
+            } else if (pokemonRequest.typeId() != null) {
+                endpoint = "type/" + pokemonRequest.typeId();
+            } else if (pokemonRequest.abilityName() != null) {
+                endpoint = "ability/" + pokemonRequest.abilityName();
             }
         }
 
-        if (endpoint.equals("pokemon") && pokemonRequest.getLimit() != null) {
-            endpoint += "?limit="+pokemonRequest.getLimit();
+        if (endpoint.equals("pokemon") && pokemonRequest.limit() != null) {
+            endpoint += "?limit="+pokemonRequest.limit();
         }
 
         if (endpoint.contains("?limit=")) {
-            int offset = pokemonRequest.getOffset() != null ? pokemonRequest.getOffset() : 0;
+            int offset = pokemonRequest.offset() != null ? pokemonRequest.offset() : 0;
             endpoint += "&offset=" + offset;
         }
 
