@@ -1,0 +1,28 @@
+# Node.js
+node_modules/
+
+# Arquivos de log
+logs
+*.log
+npm-debug.log*
+
+# Arquivos temporários
+*.tmp
+
+# Arquivos de compilação TypeScript
+dist/
+
+# Arquivos de ambiente
+.env
+
+# Arquivos de configuração
+*.code-workspace
+.vscode/
+.idea/
+
+# Arquivos de dependências de desenvolvimento
+.DS_Store
+
+# Testes
+coverage/
+jest.config.js
