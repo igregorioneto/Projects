@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 * @since 2023-11-29
 * */
 @Component
-public class GenericApiMiddleware implements ApiClient {
+public class GenericApiMiddleware<T> implements ApiClient<T> {
     private final RestTemplate restTemplate;
 
     public GenericApiMiddleware(RestTemplate restTemplate) {
@@ -32,4 +32,18 @@ public class GenericApiMiddleware implements ApiClient {
     public String fetchData(String url) {
         return restTemplate.getForObject(url, String.class);
     }
+
+    /*
+    * Realiza a chamada com o filtro e retorna um TIPO específico.
+    *
+    * @param url do endpoint.
+    * @param responseType classe para conversão.
+    * @return objeto representando a conversão.
+    * */
+    @Override
+    public T fetchDataObj(String url, Class<T> responseType) {
+        return restTemplate.getForObject(url, responseType);
+    }
+
+
 }

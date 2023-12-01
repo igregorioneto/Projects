@@ -1,7 +1,9 @@
 package com.greg.middleware.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.greg.middleware.clients.PokemonApiClient;
 import com.greg.middleware.clients.PokemonRequest;
+import com.greg.middleware.clients.PokemonResponse;
 import com.greg.middleware.clients.PokemonService;
 import com.greg.middleware.core.GenericApiMiddleware;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +33,13 @@ public class PokemonApiController {
     * @return String retorno da requisição feita
     * */
     @PostMapping
-    public String getPokemonData(@RequestBody PokemonRequest pokemonRequest) {
+    public PokemonResponse getPokemonData(@RequestBody PokemonRequest pokemonRequest) {
         String pokemonEndPoint = pokemonService.endpoint(pokemonRequest);
-        return pokemonApiClient.fetchDataFromApi(pokemonEndPoint);
+        String response = pokemonApiClient.fetchDataFromApi(pokemonEndPoint);
+        try {
+            return pokemonService.convertStringAndJson(response);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
