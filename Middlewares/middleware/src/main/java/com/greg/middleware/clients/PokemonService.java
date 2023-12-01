@@ -47,12 +47,12 @@ public class PokemonService {
         return endpoint;
     }
 
-    public PokemonResponse convertStringAndJson(String endpoint) throws JsonProcessingException {
+    public JsonNode convertStringAndJson(String endpoint) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode json = mapper.readTree(endpoint);
 
-        String name = json.path("name").asText();
+        //String name = json.path("name").asText();
 
-        return new PokemonResponse(name);
+        return json;
     }
 }
