@@ -3,7 +3,14 @@ import { config } from "dotenv";
 import { MongoClient } from "./database/mongo";
 import { MongoGetProductsRepository } from "./repositories/product/get-products/mong-get-products";
 import { GetProductsController } from "./controllers/product/get-products/get-products";
+import { MongoCreateProductsRepository } from "./repositories/product/create-products/mong-create-products";
+import { CreateProductController } from "./controllers/product/create-product/create-product";
 
+
+/**
+ * Configuração das rotas que estão sendo utilizadas com base no Pattern SOLID
+ * 
+ */
 const main = async ()=> {
     config();
 
@@ -21,6 +28,16 @@ const main = async ()=> {
         const mongoGetProductsRepository = new MongoGetProductsRepository();
         const getProductController = new GetProductsController(mongoGetProductsRepository);
         const { status, body } = await getProductController.handle();
+        res.status(status).send(body);
+    });
+
+    app.post("/products", async (req, res) => {
+        const mongoCreateProductsRepository = new MongoCreateProductsRepository();
+        const createProductController = new CreateProductController(mongoCreateProductsRepository);
+        const { status, body } = await createProductController.handle({
+            body: req.body,
+        });
+
         res.status(status).send(body);
     });
 
