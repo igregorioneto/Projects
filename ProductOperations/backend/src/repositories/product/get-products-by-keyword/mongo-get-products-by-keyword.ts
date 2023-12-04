@@ -14,9 +14,8 @@ export class MongoGetProductsByKeywordRepository implements IGetProductsByKeywor
      * Este método faz chamada a todos os produtos cadastrados no mongo 
      * com base no valor do preço informado.
      * 
-     * @param Preço
-     * @version 1.0
-     * @since 2023-12-03
+     * @param preço
+     * @return Product[] com base na descrição
      */
     async getProductsByKeyword(params: GetProductsByKeywordParams): Promise<Product[]> {
         const { keyword } = params;

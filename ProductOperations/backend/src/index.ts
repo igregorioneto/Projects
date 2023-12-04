@@ -9,6 +9,8 @@ import { MongoGetProductsByPriceRepository } from "./repositories/product/get-pr
 import { GetProductsByPriceController } from "./controllers/product/get-products-by-price/get-products-by-price";
 import { MongoGetProductsByKeywordRepository } from "./repositories/product/get-products-by-keyword/mongo-get-products-by-keyword";
 import { GetProductsByKeywordController } from "./controllers/product/get-products-by-keyword/get-products-by-keyword";
+import { MongoUpdateProductsRepository } from "./repositories/product/update-products/mong-update-products";
+import { UpdateProductController } from "./controllers/product/update-product/update-product";
 
 
 /**
@@ -60,6 +62,17 @@ const main = async ()=> {
         const { status, body } = await getProductByKeywordController.handle({
             body: req.body
         });
+        res.status(status).send(body);
+    });
+
+    app.patch("/products/:id", async (req, res) => {
+        const mongoUpdateProductsRepository = new MongoUpdateProductsRepository();
+        const updateProductController = new UpdateProductController(mongoUpdateProductsRepository);
+        const { status, body } = await updateProductController.handle({
+            body: req.body,
+            params: req.params,
+        });
+
         res.status(status).send(body);
     });
 
