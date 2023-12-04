@@ -7,6 +7,8 @@ import { MongoCreateProductsRepository } from "./repositories/product/create-pro
 import { CreateProductController } from "./controllers/product/create-product/create-product";
 import { MongoGetProductsByPriceRepository } from "./repositories/product/get-products-by-price/mong-get-products-by-price";
 import { GetProductsByPriceController } from "./controllers/product/get-products-by-price/get-products-by-price";
+import { MongoGetProductsByKeywordRepository } from "./repositories/product/get-products-by-keyword/mongo-get-products-by-keyword";
+import { GetProductsByKeywordController } from "./controllers/product/get-products-by-keyword/get-products-by-keyword";
 
 
 /**
@@ -47,6 +49,15 @@ const main = async ()=> {
         const mongoGetProductsByPriceRepository = new MongoGetProductsByPriceRepository();
         const getProductByPriceController = new GetProductsByPriceController(mongoGetProductsByPriceRepository);
         const { status, body } = await getProductByPriceController.handle({
+            body: req.body
+        });
+        res.status(status).send(body);
+    });
+
+    app.post("/products-by-keyword", async (req, res) => {
+        const mongoGetProductsByKeywordRepository = new MongoGetProductsByKeywordRepository();
+        const getProductByKeywordController = new GetProductsByKeywordController(mongoGetProductsByKeywordRepository);
+        const { status, body } = await getProductByKeywordController.handle({
             body: req.body
         });
         res.status(status).send(body);
