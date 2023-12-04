@@ -5,6 +5,8 @@ import { MongoGetProductsRepository } from "./repositories/product/get-products/
 import { GetProductsController } from "./controllers/product/get-products/get-products";
 import { MongoCreateProductsRepository } from "./repositories/product/create-products/mong-create-products";
 import { CreateProductController } from "./controllers/product/create-product/create-product";
+import { MongoGetProductsByPriceRepository } from "./repositories/product/get-products-by-price/mong-get-products-by-price";
+import { GetProductsByPriceController } from "./controllers/product/get-products-by-price/get-products-by-price";
 
 
 /**
@@ -38,6 +40,15 @@ const main = async ()=> {
             body: req.body,
         });
 
+        res.status(status).send(body);
+    });
+
+    app.post("/products-by-price", async (req, res) => {
+        const mongoGetProductsByPriceRepository = new MongoGetProductsByPriceRepository();
+        const getProductByPriceController = new GetProductsByPriceController(mongoGetProductsByPriceRepository);
+        const { status, body } = await getProductByPriceController.handle({
+            body: req.body
+        });
         res.status(status).send(body);
     });
 
