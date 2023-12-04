@@ -4,9 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.greg.middleware.clients.PokemonApiClient;
 import com.greg.middleware.clients.PokemonRequest;
-import com.greg.middleware.clients.PokemonResponse;
 import com.greg.middleware.clients.PokemonService;
-import com.greg.middleware.core.GenericApiMiddleware;
+import jakarta.validation.Valid;
+import org.owasp.encoder.Encode;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /*
@@ -34,7 +35,7 @@ public class PokemonApiController {
     * @return String retorno da requisição feita
     * */
     @PostMapping
-    public JsonNode getPokemonData(@RequestBody PokemonRequest pokemonRequest) {
+    public JsonNode getPokemonData(@Valid @RequestBody PokemonRequest pokemonRequest) {
         String pokemonEndPoint = pokemonService.endpoint(pokemonRequest);
         String response = pokemonApiClient.fetchDataFromApi(pokemonEndPoint);
         try {
