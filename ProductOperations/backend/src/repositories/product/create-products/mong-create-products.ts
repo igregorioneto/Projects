@@ -1,5 +1,4 @@
 import { CreateProductParams, ICreateProductRepository } from "../../../controllers/product/create-product/protocols";
-import { IGetProductsRepository } from "../../../controllers/product/get-products/protocols";
 import { MongoClient } from "../../../database/mongo";
 import { Product } from "../../../models/product";
 import { MongoProduct } from "../../mongo-protocols";
