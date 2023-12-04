@@ -11,6 +11,8 @@ import { MongoGetProductsByKeywordRepository } from "./repositories/product/get-
 import { GetProductsByKeywordController } from "./controllers/product/get-products-by-keyword/get-products-by-keyword";
 import { MongoUpdateProductsRepository } from "./repositories/product/update-products/mong-update-products";
 import { UpdateProductController } from "./controllers/product/update-product/update-product";
+import { MongoDeleteProductRepository } from "./repositories/product/delete-product/mong-delete-product";
+import { DeleteProductController } from "./controllers/product/delete-product/delete-product";
 
 
 /**
@@ -70,6 +72,16 @@ const main = async ()=> {
         const updateProductController = new UpdateProductController(mongoUpdateProductsRepository);
         const { status, body } = await updateProductController.handle({
             body: req.body,
+            params: req.params,
+        });
+
+        res.status(status).send(body);
+    });
+
+    app.delete("/products/:id", async (req, res) => {
+        const mongoUpdateProductsRepository = new MongoDeleteProductRepository();
+        const udeleteProductController = new DeleteProductController(mongoUpdateProductsRepository);
+        const { status, body } = await udeleteProductController.handle({
             params: req.params,
         });
 
