@@ -2,10 +2,9 @@ package br.com.erudio.controllers;
 
 import br.com.erudio.data.vo.v1.PersonVO;
 import br.com.erudio.data.vo.v2.PersonVOV2;
-import br.com.erudio.models.Person;
 import br.com.erudio.services.PersonService;
+import br.com.erudio.util.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +26,7 @@ public class PersonController {
 	 * Buscar todos os persons e transformando em um PersonVO
 	 * @return List<Person>
 	 * */
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(produces = {MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML,MediaType.APPLICATION_YML})
 	public List<PersonVO> findAll() {
 		return service.findAll();
 	}
@@ -37,7 +36,7 @@ public class PersonController {
 	 * @return Person
 	 * */
 	@GetMapping(value = "/{id}",
-			produces = MediaType.APPLICATION_JSON_VALUE)
+			produces = {MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML,MediaType.APPLICATION_YML})
 	public PersonVO findById(@PathVariable(value = "id") Long id) {
 		return service.findById(id);
 	}
@@ -47,8 +46,8 @@ public class PersonController {
 	 * @RequestBody Person
 	 * @return Person
 	 * */
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
-			produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(consumes = {MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML,MediaType.APPLICATION_YML},
+			produces = {MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML,MediaType.APPLICATION_YML})
 	public PersonVO create(@RequestBody PersonVO personVO) {
 		return service.createPerson(personVO);
 	}
@@ -58,8 +57,9 @@ public class PersonController {
 	 * @RequestBody Person
 	 * @return Person
 	 * */
-	@PostMapping(value = "/v2",consumes = MediaType.APPLICATION_JSON_VALUE,
-			produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/v2",
+			consumes = {MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML,MediaType.APPLICATION_YML},
+			produces = {MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML,MediaType.APPLICATION_YML})
 	public PersonVOV2 createV2(@RequestBody PersonVOV2 personVOV2) {
 		return service.createPersonV2(personVOV2);
 	}
@@ -69,8 +69,8 @@ public class PersonController {
 	 * @RequestBody Person
 	 * @return Person
 	 * */
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
-			produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(consumes = {MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML,MediaType.APPLICATION_YML},
+			produces = {MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML,MediaType.APPLICATION_YML})
 	public PersonVO update(@RequestBody PersonVO personVO) {
 		return service.updatePerson(personVO);
 	}
