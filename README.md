@@ -24,7 +24,7 @@ Estudo da Arquitetura do Spring com assuntos em questão: Path params, tratament
 
 ### Recursos Principais
 - [ x ] **Path Params e Tratamento de Exceção:** Utilização de Path Params para receber parâmetros na URL e implementação de tratamento de exceções para lidar com erros de forma robusta.
-- [  ] **Padrão de Projetos VO (Value Object):** Adoção do padrão de projetos Value Object para representar valores sem identidade.
+- [ X ] **Padrão de Projetos VO (Value Object):** Adoção do padrão de projetos Value Object para representar valores sem identidade.
 - [  ] **Flyway:** Utilização do Flyway para controle de versionamento e migração do banco de dados.
 - [  ] **Content Negotiation:** Implementação do Content Negotiation para suportar diferentes formatos de resposta (JSON, XML, etc.) de acordo com as preferências do cliente.
 - [  ] **HATEOAS (Hypermedia as the Engine of Application State):** Adição de links HATEOAS nos recursos da API, facilitando a navegação e descoberta de endpoints.
