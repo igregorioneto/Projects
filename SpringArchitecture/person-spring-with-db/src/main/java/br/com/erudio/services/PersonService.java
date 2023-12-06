@@ -1,8 +1,10 @@
 package br.com.erudio.services;
 
 import br.com.erudio.data.vo.v1.PersonVO;
+import br.com.erudio.data.vo.v2.PersonVOV2;
 import br.com.erudio.exception.ResourceNotFoundException;
 import br.com.erudio.mapper.VoMapper;
+import br.com.erudio.mapper.custom.PersonMapper;
 import br.com.erudio.models.Person;
 import br.com.erudio.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class PersonService {
 
     @Autowired
     private PersonRepository repository;
+
+    @Autowired
+    private PersonMapper personMapper;
 
     /*
      * Listagem de persons
@@ -87,5 +92,14 @@ public class PersonService {
         repository.delete(entity);
     }
 
-
+    /* @version 2.0
+     * Criando um person
+     * @param Person
+     * @return Person
+     * */
+    public PersonVOV2 createPersonV2(PersonVOV2 personVOV2) {
+        logger.info("Creating one people version 2.0!");
+        Person entity = personMapper.convertVoToEntity(personVOV2);
+        return personMapper.convertEntityToVo(repository.save(entity));
+    }
 }

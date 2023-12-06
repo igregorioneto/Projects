@@ -1,6 +1,7 @@
 package br.com.erudio.controllers;
 
 import br.com.erudio.data.vo.v1.PersonVO;
+import br.com.erudio.data.vo.v2.PersonVOV2;
 import br.com.erudio.models.Person;
 import br.com.erudio.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,17 @@ public class PersonController {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public PersonVO create(@RequestBody PersonVO personVO) {
 		return service.createPerson(personVO);
+	}
+
+	/*	@version 2.0
+	 * Criando um person e transformando em um PersonVO
+	 * @RequestBody Person
+	 * @return Person
+	 * */
+	@PostMapping(value = "/v2",consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public PersonVOV2 createV2(@RequestBody PersonVOV2 personVOV2) {
+		return service.createPersonV2(personVOV2);
 	}
 
 	/*
