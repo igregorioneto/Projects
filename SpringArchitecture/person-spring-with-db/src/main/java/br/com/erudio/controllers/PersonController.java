@@ -1,5 +1,6 @@
 package br.com.erudio.controllers;
 
+import br.com.erudio.data.vo.v1.PersonVO;
 import br.com.erudio.models.Person;
 import br.com.erudio.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,44 +23,44 @@ public class PersonController {
 	private PersonService service;
 
 	/*
-	 * Buscar todos os persons
+	 * Buscar todos os persons e transformando em um PersonVO
 	 * @return List<Person>
 	 * */
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Person> findAll() {
+	public List<PersonVO> findAll() {
 		return service.findAll();
 	}
 
 	/*
-	 * Buscar um person por ID
+	 * Buscar um person por ID e transformando em um PersonVO
 	 * @return Person
 	 * */
 	@GetMapping(value = "/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person findById(@PathVariable(value = "id") Long id) {
+	public PersonVO findById(@PathVariable(value = "id") Long id) {
 		return service.findById(id);
 	}
 
 	/*
-	 * Criando um person
+	 * Criando um person e transformando em um PersonVO
 	 * @RequestBody Person
 	 * @return Person
 	 * */
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person create(@RequestBody Person person) {
-		return service.createPerson(person);
+	public PersonVO create(@RequestBody PersonVO personVO) {
+		return service.createPerson(personVO);
 	}
 
 	/*
-	 * Atualizando um person
+	 * Atualizando um person e transformando em um PersonVO
 	 * @RequestBody Person
 	 * @return Person
 	 * */
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person update(@RequestBody Person person) {
-		return service.updatePerson(person);
+	public PersonVO update(@RequestBody PersonVO personVO) {
+		return service.updatePerson(personVO);
 	}
 
 	/*

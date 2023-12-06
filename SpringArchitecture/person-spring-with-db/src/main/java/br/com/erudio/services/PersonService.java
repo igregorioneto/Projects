@@ -1,6 +1,8 @@
 package br.com.erudio.services;
 
+import br.com.erudio.data.vo.v1.PersonVO;
 import br.com.erudio.exception.ResourceNotFoundException;
+import br.com.erudio.mapper.VoMapper;
 import br.com.erudio.models.Person;
 import br.com.erudio.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,10 @@ public class PersonService {
      * Listagem de persons
      * @return List<Person>
      * */
-    public List<Person> findAll() {
+    public List<PersonVO> findAll() {
         logger.info("Finding all people!");
 
-        return repository.findAll();
+        return VoMapper.parseListObjects(repository.findAll(), PersonVO.class);
     }
 
     /*
@@ -34,11 +36,13 @@ public class PersonService {
      * @param id
      * @return Person
      * */
-    public Person findById(Long id) {
+    public PersonVO findById(Long id) {
         logger.info("Finding one people!");
 
-        return repository.findById(id)
+        Person entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+
+        return VoMapper.parseObject(entity, PersonVO.class);
     }
 
     /*
@@ -46,10 +50,10 @@ public class PersonService {
      * @param Person
      * @return Person
      * */
-    public Person createPerson(Person person) {
+    public PersonVO createPerson(PersonVO personVO) {
         logger.info("Creating one people!");
-
-        return repository.save(person);
+        Person entity = VoMapper.parseObject(personVO, Person.class);
+        return VoMapper.parseObject(repository.save(entity), PersonVO.class);
     }
 
     /*
@@ -57,7 +61,7 @@ public class PersonService {
      * @param Person
      * @return Person
      * */
-    public Person updatePerson(Person person) {
+    public PersonVO updatePerson(PersonVO person) {
         logger.info("Updating one people!");
 
         Person entity = repository.findById(person.getId())
@@ -68,7 +72,7 @@ public class PersonService {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return repository.save(person);
+        return VoMapper.parseObject(repository.save(entity), PersonVO.class);
     }
 
     /*
