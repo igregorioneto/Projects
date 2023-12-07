@@ -1,3 +1,3 @@
-INSERT INTO `pessoas` VALUES (1,'In Brazil ','Person name ','Male','Last name '),
-(2,'In Brazil ','Person name ','Male','Last name '),
-(3,'In Brazil ','Person name ','Male','Last name ');
+INSERT INTO `pessoas` VALUES (1,'Person name ','Last name ','In Brazil','Male'),
+(2,'Person name ','Last name ','In Brazil ','Male'),
+(3,'Person name ','Last name ','In Brazil ','Male');
