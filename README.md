@@ -28,7 +28,7 @@ Estudo da Arquitetura do Spring com assuntos em questão: Path params, tratament
 - [ X ] **Flyway:** Utilização do Flyway para controle de versionamento e migração do banco de dados.
 - [ X ] **Content Negotiation:** Implementação do Content Negotiation para suportar diferentes formatos de resposta (JSON, XML, etc.) de acordo com as preferências do cliente.
 - [ X ] **HATEOAS (Hypermedia as the Engine of Application State):** Adição de links HATEOAS nos recursos da API, facilitando a navegação e descoberta de endpoints.
-- [  ] **Swagger:** Documentação da API utilizando Swagger para facilitar o entendimento e teste da API.
+- [ X ] **Swagger:** Documentação da API utilizando Swagger para facilitar o entendimento e teste da API.
 - [  ] **CORS (Cross-Origin Resource Sharing):** Configuração do CORS para permitir requisições de diferentes origens.
 - [  ] **Autenticação e Spring Security:** Implementação de autenticação segura usando Spring Security, garantindo a proteção dos endpoints sensíveis.
 - [  ] **Blindagem da API com Rest Assured:** Testes automatizados com Rest Assured para assegurar a integridade da API.
