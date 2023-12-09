@@ -23,13 +23,13 @@ O projeto "Middleware para Integração com APIs" oferece funcionalidades de mid
 Estudo da Arquitetura do Spring com assuntos em questão: Path params, tratamento de exceção, Padrão de projetos VO, Flyway, Content Negotiation, HATEOAS, Swagger, CORS, Autenticação e Spring Security, Rest Assured, Testcontainers, JUnit, Query params, Busca paginada, Upload e Download de arquivos, Dockerização da aplicação, Implementação na AWS e Integração Contínua com AWS e GitHub Actions.
 
 ### Recursos Principais
-- [ x ] **Path Params e Tratamento de Exceção:** Utilização de Path Params para receber parâmetros na URL e implementação de tratamento de exceções para lidar com erros de forma robusta.
+- [ X ] **Path Params e Tratamento de Exceção:** Utilização de Path Params para receber parâmetros na URL e implementação de tratamento de exceções para lidar com erros de forma robusta.
 - [ X ] **Padrão de Projetos VO (Value Object):** Adoção do padrão de projetos Value Object para representar valores sem identidade.
 - [ X ] **Flyway:** Utilização do Flyway para controle de versionamento e migração do banco de dados.
 - [ X ] **Content Negotiation:** Implementação do Content Negotiation para suportar diferentes formatos de resposta (JSON, XML, etc.) de acordo com as preferências do cliente.
 - [ X ] **HATEOAS (Hypermedia as the Engine of Application State):** Adição de links HATEOAS nos recursos da API, facilitando a navegação e descoberta de endpoints.
 - [ X ] **Swagger:** Documentação da API utilizando Swagger para facilitar o entendimento e teste da API.
-- [  ] **CORS (Cross-Origin Resource Sharing):** Configuração do CORS para permitir requisições de diferentes origens.
+- [ X ] **CORS (Cross-Origin Resource Sharing):** Configuração do CORS para permitir requisições de diferentes origens.
 - [  ] **Autenticação e Spring Security:** Implementação de autenticação segura usando Spring Security, garantindo a proteção dos endpoints sensíveis.
 - [  ] **Blindagem da API com Rest Assured:** Testes automatizados com Rest Assured para assegurar a integridade da API.
 - [  ] **Testcontainers e JUnit:** Utilização do Testcontainers junto com JUnit para testes de integração, facilitando a execução de testes em ambientes isolados e controlados.
