@@ -30,6 +30,7 @@ public class AbstractIntegrationTest {
             );
         }
 
+        @SuppressWarnings({"unchecked", "rawtypes"})
         @Override
         public void initialize(ConfigurableApplicationContext applicationContext) {
             startContainers();
@@ -40,5 +41,5 @@ public class AbstractIntegrationTest {
             environment.getPropertySources().addFirst(testcontainers);
         }
     }
-
 }
+

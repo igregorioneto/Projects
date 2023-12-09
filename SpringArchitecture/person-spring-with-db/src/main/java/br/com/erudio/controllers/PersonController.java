@@ -58,6 +58,7 @@ public class PersonController {
 	 * Buscar um person por ID e transformando em um PersonVO
 	 * @return Person
 	 * */
+	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping(value = "/{id}",
 			produces = {MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML,MediaType.APPLICATION_YML})
 	@Operation(summary = "Find all People", description = "Find all People",
@@ -80,6 +81,7 @@ public class PersonController {
 	 * @RequestBody Person
 	 * @return Person
 	 * */
+	@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000"})
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML,MediaType.APPLICATION_YML},
 			produces = {MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML,MediaType.APPLICATION_YML})
 	@Operation(summary = "Adds a new People",
