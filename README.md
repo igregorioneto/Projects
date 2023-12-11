@@ -1,6 +1,9 @@
 # Projetos
 
-## Projeto 1: Middleware para Integração com APIs
+<details>
+<summary>Middleware para Integração com APIs - Middlewares</summary>
+
+## Middleware para Integração com APIs
 
 ### Descrição
 O projeto "Middleware para Integração com APIs" oferece funcionalidades de middleware para facilitar a integração com APIs externas. Ele fornece uma abordagem genérica para consultas a APIs, simplificando a comunicação e o processamento de dados.
@@ -16,7 +19,11 @@ O projeto "Middleware para Integração com APIs" oferece funcionalidades de mid
 - **Spring:** Framework para desenvolvimento de aplicações Java que simplifica a configuração, promove boas práticas de programação e oferece uma ampla variedade de módulos para diferentes aspectos do desenvolvimento.
 - **Spring Boot:** Extensão do framework Spring que simplifica o processo de configuração e desenvolvimento de aplicativos Java.
 - **JUnit:** Framework de teste para Java que facilita a criação e execução de testes unitários.
+</details>
 
+
+<details> 
+<summary>Spring Architecture - SpringArchitecture</summary>
 ## Spring Architecture
 
 ### Descrição
@@ -51,7 +58,126 @@ Estudo da Arquitetura do Spring com assuntos em questão: Path params, tratament
 - **JUnit:** Framework de testes unitários para Java.
 - **Docker:** Plataforma para desenvolvimento, envio e execução de aplicações em contêineres.
 - **AWS:** Amazon Web Services, provedor de serviços de computação em nuvem.
+</details>
 
+
+<details> 
+<summary>API de Análise de Candidaturas - ApplicationAnalysis</summary>
+## API de Análise de Candidaturas
+
+Este projeto consiste na criação de uma API para facilitar a análise de candidaturas recebidas para vagas de emprego. O objetivo é ajudar o recrutador a identificar os candidatos mais aderentes a cada vaga com base em critérios de nível de experiência e localização.
+Segue a documentação feita para este desafio: https://whimsical.com/sistema-para-um-processo-seletivo-de-vagas-62fXHnhtctHxLhTwTomCUy
+
+## Especificações da API
+
+### Níveis de Experiência
+- 1: Estagiário
+- 2: Júnior
+- 3: Pleno
+- 4: Sênior
+- 5: Especialista
+
+### Localidades
+Representadas por letras do alfabeto. Consultar o mapa abaixo para verificar os caminhos e distâncias entre as localidades.
+
+### Cálculo do Score do Candidato
+O score do candidato é calculado utilizando a seguinte fórmula:
+
+\[ \text{Score} = \text{parte inteira}\left(\frac{\text{NV} \times 100}{\text{N} + 1}\right) \]
+
+onde:
+- NV é o nível de experiência esperado para a vaga.
+- NC é calculado pela menor distância entre o candidato e a vaga.
+
+#### Tabela de Distâncias (D) e Pontuações (N)
+- 0 até 5: D = 100
+- Maior que 5 até 10: D = 75
+- Maior que 10 até 15: D = 50
+- Maior que 15 até 20: D = 25
+- Maior que 20: D = 0
+
+### Endpoints
+
+1. **Cadastrar Vagas de Emprego**
+   - **Endpoint:** POST http://localhost:9000/v1/vagas
+   - **Request Body:**
+     ```json
+     {
+         "empresa": "Teste",
+         "titulo": "Vaga teste",
+         "descricao": "Criar os mais diferentes tipos de teste",
+         "localizacao": "A",
+         "nivel": 3
+     }
+     ```
+   - **Response:** _A resposta para esta função será definida por você e faz parte da avaliação._
+
+2. **Cadastrar Pessoas**
+   - **Endpoint:** POST http://localhost:9000/v1/pessoas
+   - **Request Body:**
+     ```json
+     {
+         "nome": "John Doe",
+         "profissao": "Engenheiro de Software",
+         "localizacao": "C",
+         "nivel": 2
+     }
+     ```
+   - **Response:** _A resposta para esta função será definida por você e faz parte da avaliação._
+
+3. **Registrar Candidatura**
+   - **Endpoint:** POST http://localhost:9000/v1/candidaturas
+   - **Request Body:**
+     ```json
+     {
+         "id_vaga": 1,
+         "id_pessoa": 2
+     }
+     ```
+   - **Response:** _A resposta para esta função será definida por você e faz parte da avaliação._
+
+4. **Retornar Candidatos de uma Vaga (Ordenados por Score)**
+   - **Endpoint:** GET http://localhost:9000/v1/vagas/1/candidaturas/ranking
+   - **Response:**
+     ```json
+     [
+         {
+             "nome": "Mary Jane",
+             "profissao": "Engenheira de Software",
+             "localizacao": "A",
+             "nivel": 4,
+             "score": 87
+         },
+         {
+             "nome": "John Doe",
+             "profissao": "Engenheiro de Software",
+             "localizacao": "C",
+             "nivel": 2,
+             "score": 62
+         },
+         ...
+     ]
+     ```
+
+   _A resposta contém uma lista de candidatos ordenados por score (em ordem decrescente). A estrutura do objeto candidato é definida por você e faz parte da avaliação._
+
+---
+
+**Observação:** Este é um esboço inicial da documentação da API. Certifique-se de personalizar os campos de resposta e demais detalhes de acordo com a implementação real da API.
+
+### Tecnologias Utilizadas
+- **Java:** Plataforma de desenvolvimento que oferece uma abordagem eficiente e poderosa para criar aplicativos escaláveis e de alto desempenho.
+- **Spring:** Framework para desenvolvimento de aplicações Java que simplifica a configuração, promove boas práticas de programação e oferece uma ampla variedade de módulos para diferentes aspectos do desenvolvimento.
+- **Spring Boot:** Extensão do framework Spring que simplifica o processo de configuração e desenvolvimento de aplicativos Java.
+- **JUnit:** Framework de teste para Java que facilita a criação e execução de testes unitários.
+- **Flyway:** Ferramenta de controle de versão para bancos de dados. Automatiza o processo de evolução do esquema do banco de dados, facilitando a migração entre versões e o versionamento do banco de dados.
+
+</details> 
+
+
+
+<details> 
+<summary>Product Operations API - ProductOperations</summary>
 
 ## Product Operations API
 
@@ -70,5 +196,8 @@ Esta API foi desenvolvida utilizando Node.js, TypeScript e MongoDB. Ela fornece 
 - **Express:** Framework web para Node.js facilitando o desenvolvimento de APIs.
 - **Mongoose:** ODM (Object Data Modeling) para MongoDB, facilitando a interação com o banco de dados.
 - **Jest:** Framework de teste para JavaScript e TypeScript.
+</details> 
+
+
 
 
