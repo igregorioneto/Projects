@@ -2,6 +2,12 @@ package br.com.backend.vo;
 
 import java.util.Objects;
 
+/*
+ * Classe VO que representa a classe Vaga para o padrão VO no projeto
+ * @author Greg
+ * @verion 1.0
+ * @since 2023-12-11
+ * */
 public class VagaVO {
     private String empresa;
     private String titulo;

@@ -7,6 +7,12 @@ import jakarta.persistence.Temporal;
 
 import java.util.Objects;
 
+/*
+ * Vaga
+ * @author Greg
+ * @verion 1.0
+ * @since 2023-12-11
+ * */
 @Entity
 @Table(name = "vagas")
 public class Vaga extends BaseEntity{
