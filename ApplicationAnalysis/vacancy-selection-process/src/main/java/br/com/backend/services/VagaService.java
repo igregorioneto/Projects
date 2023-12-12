@@ -1,5 +1,6 @@
 package br.com.backend.services;
 
+import br.com.backend.exception.ResourceNotFoundException;
 import br.com.backend.mapper.VoMapper;
 import br.com.backend.models.Vaga;
 import br.com.backend.repositories.VagaRepository;
@@ -40,6 +41,8 @@ public class VagaService {
      * @return Vaga
      * */
     public VagaVO create(VagaVO vaga) {
+        if (vaga == null) throw new ResourceNotFoundException();
+
         Vaga entitie = VoMapper.parseObject(vaga, Vaga.class);
         VagaVO vo = VoMapper.parseObject(repository.save(entitie), VagaVO.class);
         return vo;

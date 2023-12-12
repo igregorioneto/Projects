@@ -1,5 +1,6 @@
 package br.com.backend.services;
 
+import br.com.backend.exception.ResourceNotFoundException;
 import br.com.backend.mapper.VoMapper;
 import br.com.backend.models.Candidato;
 import br.com.backend.models.Vaga;
@@ -41,6 +42,8 @@ public class CandidatoService {
      * @return Candidato
      * */
     public CandidatoVO create(CandidatoVO candidato) {
+        if (candidato.getNome() == null) throw new ResourceNotFoundException();
+
         Candidato entitie = VoMapper.parseObject(candidato, Candidato.class);
         CandidatoVO vo = VoMapper.parseObject(repository.save(entitie), CandidatoVO.class);
         return vo;
