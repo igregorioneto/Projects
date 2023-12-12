@@ -1,30 +1,33 @@
 package br.com.backend.vo;
 
+import br.com.backend.models.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 /*
- * Classe VO que representa a classe Vaga para o padrão VO no projeto
+ * CandidatoVO
  * @author Greg
  * @verion 1.0
- * @since 2023-12-11
+ * @since 2023-12-12
  * */
-@JsonPropertyOrder({ "id", "empresa", "titulo", "descricao", "localizacao", "nivel" })
-public class VagaVO implements Serializable {
+@JsonPropertyOrder({ "id", "nome", "profissao", "localizacao", "nivel" })
+public class CandidatoVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("id")
     private Long key;
-    private String empresa;
-    private String titulo;
-    private String descricao;
+    private String nome;
+    private String profissao;
     private Character localizacao;
     private Character nivel;
 
-    public VagaVO() {
+    public CandidatoVO() {
     }
 
     public Long getKey() {
@@ -35,28 +38,20 @@ public class VagaVO implements Serializable {
         this.key = key;
     }
 
-    public String getEmpresa() {
-        return empresa;
+    public String getNome() {
+        return nome;
     }
 
-    public void setEmpresa(String empresa) {
-        this.empresa = empresa;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getProfissao() {
+        return profissao;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setProfissao(String profissao) {
+        this.profissao = profissao;
     }
 
     public Character getLocalizacao() {
@@ -79,12 +74,12 @@ public class VagaVO implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        VagaVO vagaVO = (VagaVO) o;
-        return Objects.equals(empresa, vagaVO.empresa) && Objects.equals(titulo, vagaVO.titulo) && Objects.equals(descricao, vagaVO.descricao) && Objects.equals(localizacao, vagaVO.localizacao) && Objects.equals(nivel, vagaVO.nivel);
+        CandidatoVO that = (CandidatoVO) o;
+        return Objects.equals(key, that.key) && Objects.equals(nome, that.nome) && Objects.equals(profissao, that.profissao) && Objects.equals(localizacao, that.localizacao) && Objects.equals(nivel, that.nivel);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(empresa, titulo, descricao, localizacao, nivel);
+        return Objects.hash(key, nome, profissao, localizacao, nivel);
     }
 }

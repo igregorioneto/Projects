@@ -1,8 +1,10 @@
 package br.com.backend.services;
 
+import br.com.backend.mapper.VoMapper;
 import br.com.backend.models.Candidato;
 import br.com.backend.models.Vaga;
 import br.com.backend.repositories.CandidatoRepository;
+import br.com.backend.vo.CandidatoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +30,9 @@ public class CandidatoService {
     * @param
     * @return List<Candidato>
     * */
-    public List<Candidato> getAll() {
-        return repository.findAll();
+    public List<CandidatoVO> getAll() {
+        List<CandidatoVO> vo = VoMapper.parseObjectList(repository.findAll(), CandidatoVO.class);
+        return vo;
     }
 
     /*
@@ -37,7 +40,9 @@ public class CandidatoService {
      * @param Candidato
      * @return Candidato
      * */
-    public Candidato create(Candidato candidato) {
-        return repository.save(candidato);
+    public CandidatoVO create(CandidatoVO candidato) {
+        Candidato entitie = VoMapper.parseObject(candidato, Candidato.class);
+        CandidatoVO vo = VoMapper.parseObject(repository.save(entitie), CandidatoVO.class);
+        return vo;
     }
 }

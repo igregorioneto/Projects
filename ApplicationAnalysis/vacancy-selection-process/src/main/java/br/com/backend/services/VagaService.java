@@ -1,7 +1,9 @@
 package br.com.backend.services;
 
+import br.com.backend.mapper.VoMapper;
 import br.com.backend.models.Vaga;
 import br.com.backend.repositories.VagaRepository;
+import br.com.backend.vo.VagaVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,18 +27,21 @@ public class VagaService {
     /*
     * Buscar todas as vagas cadastradas
     * @param
-    * @return List<Vaga>
+    * @return List<VagaVO>
     * */
-    public List<Vaga> getAll() {
-        return repository.findAll();
+    public List<VagaVO> getAll() {
+        List<VagaVO> vo = VoMapper.parseObjectList(repository.findAll(), VagaVO.class);
+        return vo;
     }
 
     /*
      * Cadastrar uma vaga
-     * @param Vaga
+     * @param VagaVO
      * @return Vaga
      * */
-    public Vaga create(Vaga vaga) {
-        return repository.save(vaga);
+    public VagaVO create(VagaVO vaga) {
+        Vaga entitie = VoMapper.parseObject(vaga, Vaga.class);
+        VagaVO vo = VoMapper.parseObject(repository.save(entitie), VagaVO.class);
+        return vo;
     }
 }
