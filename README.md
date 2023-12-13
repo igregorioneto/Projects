@@ -37,7 +37,7 @@ Estudo da Arquitetura do Spring com assuntos em questão: Path params, tratament
 - [ X ] **HATEOAS (Hypermedia as the Engine of Application State):** Adição de links HATEOAS nos recursos da API, facilitando a navegação e descoberta de endpoints.
 - [ X ] **Swagger:** Documentação da API utilizando Swagger para facilitar o entendimento e teste da API.
 - [ X ] **CORS (Cross-Origin Resource Sharing):** Configuração do CORS para permitir requisições de diferentes origens.
-- [  ] **Autenticação e Spring Security:** Implementação de autenticação segura usando Spring Security, garantindo a proteção dos endpoints sensíveis.
+- [ X ] **Autenticação e Spring Security:** Implementação de autenticação segura usando Spring Security, garantindo a proteção dos endpoints sensíveis.
 - [  ] **Blindagem da API com Rest Assured:** Testes automatizados com Rest Assured para assegurar a integridade da API.
 - [  ] **Testcontainers e JUnit:** Utilização do Testcontainers junto com JUnit para testes de integração, facilitando a execução de testes em ambientes isolados e controlados.
 - [  ] **Query Params e Busca Paginada:** Adição de suporte para Query Params para filtrar resultados e busca paginada para lidar com grandes conjuntos de dados.
