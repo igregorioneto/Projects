@@ -1,14 +1,12 @@
 package br.com.erudio.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -37,8 +35,8 @@ public class User implements UserDetails, Serializable {
     @Column(name = "credentials_non_expired")
     private Boolean credentialsNonExpired;
 
-    @Column(name = "enable")
-    private Boolean enable;
+    @Column(name = "enabled")
+    private Boolean enabled;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_permission", joinColumns = { @JoinColumn(name = "id_user") },
@@ -55,6 +53,12 @@ public class User implements UserDetails, Serializable {
             roles.add(permission.getDescription());
         }
         return roles;
+    }
+
+    public void encodePassword() {
+        if (this.password != null) {
+            this.password = Base64.getEncoder().encodeToString(this.password.getBytes());
+        }
     }
 
     @Override
@@ -89,7 +93,7 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public boolean isEnabled() {
-        return this.enable;
+        return this.enabled;
     }
 
     public Long getId() {
@@ -145,11 +149,11 @@ public class User implements UserDetails, Serializable {
     }
 
     public Boolean getEnable() {
-        return enable;
+        return enabled;
     }
 
     public void setEnable(Boolean enable) {
-        this.enable = enable;
+        this.enabled = enable;
     }
 
     public List<Permission> getPermissions() {
@@ -160,16 +164,11 @@ public class User implements UserDetails, Serializable {
         this.permissions = permissions;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(userName, user.userName) && Objects.equals(fullName, user.fullName) && Objects.equals(password, user.password) && Objects.equals(accountNonExpired, user.accountNonExpired) && Objects.equals(accountNonLocked, user.accountNonLocked) && Objects.equals(credentialsNonExpired, user.credentialsNonExpired) && Objects.equals(enable, user.enable) && Objects.equals(permissions, user.permissions);
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, userName, fullName, password, accountNonExpired, accountNonLocked, credentialsNonExpired, enable, permissions);
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }

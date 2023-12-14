@@ -20,6 +20,10 @@ public class Permission implements GrantedAuthority, Serializable {
 
     public Permission() {}
 
+    public Permission(Long id, String description) {
+        this.id = id;
+        this.description = description;
+    }
 
     @Override
     public String getAuthority() {

@@ -2,8 +2,10 @@ package br.com.erudio.mapper;
 
 import br.com.erudio.data.vo.v1.BookVO;
 import br.com.erudio.data.vo.v1.PersonVO;
+import br.com.erudio.data.vo.v1.UserVO;
 import br.com.erudio.models.Book;
 import br.com.erudio.models.Person;
+import br.com.erudio.models.User;
 import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
@@ -31,6 +33,14 @@ public class VoMapper {
                 BookVO.class,
                 Book.class)
                 .addMapping(BookVO::getKey, Book::setId);
+        mapper.createTypeMap(
+                User.class,
+                UserVO.class)
+                .addMapping(User::getId, UserVO::setKey);
+        mapper.createTypeMap(
+                UserVO.class,
+                User.class)
+                .addMapping(UserVO::getKey, User::setId);
     };
 
     public static <O, D> D parseObject(O origin, Class<D> destination) {
