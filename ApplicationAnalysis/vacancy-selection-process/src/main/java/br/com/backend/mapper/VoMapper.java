@@ -2,7 +2,9 @@ package br.com.backend.mapper;
 
 import br.com.backend.models.Candidato;
 import br.com.backend.models.Vaga;
+import br.com.backend.models.VagaCandidato;
 import br.com.backend.vo.CandidatoVO;
+import br.com.backend.vo.VagaCandidatoVO;
 import br.com.backend.vo.VagaVO;
 import org.modelmapper.ModelMapper;
 
@@ -22,6 +24,10 @@ public class VoMapper {
                 .addMapping(Candidato::getId, CandidatoVO::setKey);
         mapper.createTypeMap(CandidatoVO.class, Candidato.class)
                 .addMapping(CandidatoVO::getKey, Candidato::setId);
+        mapper.createTypeMap(VagaCandidatoVO.class, VagaCandidato.class)
+                .addMapping(VagaCandidatoVO::getKey, VagaCandidato::setId);
+        mapper.createTypeMap(VagaCandidato.class, VagaCandidatoVO.class)
+                .addMapping(VagaCandidato::getId, VagaCandidatoVO::setKey);
     };
 
     public static <O, D> D parseObject(O origin, Class<D> destination) {

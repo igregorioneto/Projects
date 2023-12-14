@@ -3,8 +3,9 @@ package br.com.backend.services;
 import br.com.backend.exception.ResourceNotFoundException;
 import br.com.backend.mapper.VoMapper;
 import br.com.backend.models.Vaga;
-import br.com.backend.repositories.CandidatoRepository;
-import br.com.backend.repositories.VagaRepository;
+import br.com.backend.models.VagaCandidato;
+import br.com.backend.repositories.VagaCandidatoRepository;
+import br.com.backend.vo.VagaCandidatoVO;
 import br.com.backend.vo.VagaVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,30 +14,26 @@ import java.util.List;
 import java.util.logging.Logger;
 
 /*
-* Serviço da Vaga
+* Serviço da VagaCandidato
 * @author Greg
 * @verion 1.0
-* @since 2023-12-11
+* @since 2023-12-14
 * */
 @Service
-public class VagaService {
+public class VagaCandidatoService {
 
-    private Logger logger = Logger.getLogger(VagaService.class.getName());
-
-    @Autowired
-    private VagaRepository repository;
+    private Logger logger = Logger.getLogger(VagaCandidatoService.class.getName());
 
     @Autowired
-    private CandidatoRepository candidatoRepository;
+    private VagaCandidatoRepository repository;
 
     /*
     * Buscar todas as vagas cadastradas
     * @param
     * @return List<VagaVO>
     * */
-    public List<VagaVO> getAll() {
-        List<VagaVO> vo = VoMapper.parseObjectList(repository.findAll(), VagaVO.class);
-        return vo;
+    public List<VagaCandidatoVO> getAll() {
+        return VoMapper.parseObjectList(repository.findAll(), VagaCandidatoVO.class);
     }
 
     /*
@@ -44,11 +41,11 @@ public class VagaService {
      * @param VagaVO
      * @return Vaga
      * */
-    public VagaVO create(VagaVO vaga) {
+    public VagaCandidatoVO create(VagaCandidatoVO vaga) {
         if (vaga == null) throw new ResourceNotFoundException();
 
-        Vaga entitie = VoMapper.parseObject(vaga, Vaga.class);
-        VagaVO vo = VoMapper.parseObject(repository.save(entitie), VagaVO.class);
+        VagaCandidato entitie = VoMapper.parseObject(vaga, VagaCandidato.class);
+        VagaCandidatoVO vo = VoMapper.parseObject(repository.save(entitie), VagaCandidatoVO.class);
         return vo;
     }
 }

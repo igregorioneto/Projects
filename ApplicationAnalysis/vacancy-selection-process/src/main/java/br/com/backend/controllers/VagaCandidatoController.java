@@ -1,7 +1,9 @@
 package br.com.backend.controllers;
 
+import br.com.backend.services.VagaCandidatoService;
 import br.com.backend.services.VagaService;
 import br.com.backend.util.MediaType;
+import br.com.backend.vo.VagaCandidatoVO;
 import br.com.backend.vo.VagaVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,35 +11,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /*
- * Controller da Vaga
+ * Controller da VagaCandidato
  * @author Greg
  * @verion 1.0
- * @since 2023-12-11
+ * @since 2023-12-14
  * */
 @RestController
-@RequestMapping("/api/vagas/v1")
-public class VagaController {
+@RequestMapping("/api/candidaturas/v1")
+public class VagaCandidatoController {
 
     @Autowired
-    private VagaService service;
+    private VagaCandidatoService service;
 
     /*
-     * Buscar todas as vagas cadastradas
+     * Buscar todas as vagaCandidatoVO
      * @param
-     * @return List<VagaVO>
+     * @return List<vagaCandidatoVO>
      * */
     @GetMapping(produces = {MediaType.APPLICATION_JSON})
-    public List<VagaVO> findAll() {
+    public List<VagaCandidatoVO> findAll() {
         return service.getAll();
     }
 
     /*
-     * Cadastrar uma vaga
-     * @param VagaVO
-     * @return VagaVO
+     * Cadastrar uma vagaCandidatoVO
+     * @param vagaCandidatoVO
+     * @return vagaCandidatoVO
      * */
     @PostMapping(consumes = {MediaType.APPLICATION_JSON}, produces = {MediaType.APPLICATION_JSON})
-    public VagaVO create(@RequestBody VagaVO vaga) {
-        return service.create(vaga);
+    public VagaCandidatoVO create(@RequestBody VagaCandidatoVO vagaCandidatoVO) {
+        return service.create(vagaCandidatoVO);
     }
 }

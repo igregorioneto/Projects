@@ -2,8 +2,10 @@ package br.com.backend.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.util.List;
 import java.util.Objects;
 
 /*
@@ -24,6 +26,9 @@ public class Candidato extends BaseEntity{
     private Character localizacao;
     @Column(length = 1, nullable = false)
     private Character nivel;
+
+    @OneToMany(mappedBy = "candidato")
+    private List<VagaCandidato> candidaturas;
 
     public Candidato() {
     }
@@ -60,16 +65,24 @@ public class Candidato extends BaseEntity{
         this.nivel = nivel;
     }
 
+    public List<VagaCandidato> getCandidaturas() {
+        return candidaturas;
+    }
+
+    public void setCandidaturas(List<VagaCandidato> candidaturas) {
+        this.candidaturas = candidaturas;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Candidato candidato = (Candidato) o;
-        return Objects.equals(nome, candidato.nome) && Objects.equals(profissao, candidato.profissao) && Objects.equals(localizacao, candidato.localizacao) && Objects.equals(nivel, candidato.nivel);
+        return Objects.equals(nome, candidato.nome) && Objects.equals(profissao, candidato.profissao) && Objects.equals(localizacao, candidato.localizacao) && Objects.equals(nivel, candidato.nivel) && Objects.equals(candidaturas, candidato.candidaturas);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, profissao, localizacao, nivel);
+        return Objects.hash(nome, profissao, localizacao, nivel, candidaturas);
     }
 }
