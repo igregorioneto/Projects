@@ -1,5 +1,6 @@
 package br.com.backend.controllers;
 
+import br.com.backend.models.Vaga;
 import br.com.backend.services.VagaService;
 import br.com.backend.util.MediaType;
 import br.com.backend.vo.VagaVO;
@@ -27,7 +28,7 @@ public class VagaController {
      * @return List<VagaVO>
      * */
     @GetMapping(produces = {MediaType.APPLICATION_JSON})
-    public List<VagaVO> findAll() {
+    public List<Vaga> findAll() {
         return service.getAll();
     }
 

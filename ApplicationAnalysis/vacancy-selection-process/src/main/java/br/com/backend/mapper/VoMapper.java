@@ -16,6 +16,16 @@ public class VoMapper {
     private static ModelMapper mapper = new ModelMapper();
 
     static {
+//        mapper.createTypeMap(VagaCandidatoVO.class, VagaCandidato.class)
+//                .addMapping(src -> src.getCandidatoId(), VagaCandidato::setCandidato)
+//                .addMapping(src -> src.getVagaId(), VagaCandidato::setVaga)
+//                .addMapping(VagaCandidatoVO::getKey, VagaCandidato::setId);
+//        mapper.createTypeMap(VagaCandidato.class, VagaCandidatoVO.class)
+//                .addMapping(src -> src.getCandidato(), VagaCandidatoVO::setCandidatoId)
+//                .addMapping(src -> src.getVaga(), VagaCandidatoVO::setVagaId)
+//                .addMapping(VagaCandidato::getId, VagaCandidatoVO::setKey);
+
+
         mapper.createTypeMap(Vaga.class,VagaVO.class)
                 .addMapping(Vaga::getId, VagaVO::setKey);
         mapper.createTypeMap(VagaVO.class,Vaga.class)
@@ -24,10 +34,6 @@ public class VoMapper {
                 .addMapping(Candidato::getId, CandidatoVO::setKey);
         mapper.createTypeMap(CandidatoVO.class, Candidato.class)
                 .addMapping(CandidatoVO::getKey, Candidato::setId);
-        mapper.createTypeMap(VagaCandidatoVO.class, VagaCandidato.class)
-                .addMapping(VagaCandidatoVO::getKey, VagaCandidato::setId);
-        mapper.createTypeMap(VagaCandidato.class, VagaCandidatoVO.class)
-                .addMapping(VagaCandidato::getId, VagaCandidatoVO::setKey);
     };
 
     public static <O, D> D parseObject(O origin, Class<D> destination) {

@@ -34,9 +34,9 @@ public class VagaService {
     * @param
     * @return List<VagaVO>
     * */
-    public List<VagaVO> getAll() {
-        List<VagaVO> vo = VoMapper.parseObjectList(repository.findAll(), VagaVO.class);
-        return vo;
+    public List<Vaga> getAll() {
+        //List<VagaVO> vo = VoMapper.parseObjectList(repository.findAll(), VagaVO.class);
+        return repository.findAll();
     }
 
     /*

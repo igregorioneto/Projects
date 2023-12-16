@@ -1,8 +1,12 @@
 package br.com.backend.controllers;
 
-import br.com.backend.services.VagaService;
+import br.com.backend.models.Candidato;
+import br.com.backend.models.VagaCandidato;
+import br.com.backend.services.CandidatoService;
+import br.com.backend.services.VagaCandidatoService;
 import br.com.backend.util.MediaType;
-import br.com.backend.vo.VagaVO;
+import br.com.backend.vo.CandidatoVO;
+import br.com.backend.vo.VagaCandidatoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +20,10 @@ import java.util.List;
  * */
 @RestController
 @RequestMapping("/api/pessoas/v1")
-public class CandidaturaController {
+public class CandidatoController {
 
     @Autowired
-    private VagaService service;
+    private CandidatoService service;
 
     /*
      * Buscar todas as vagas cadastradas
@@ -27,7 +31,7 @@ public class CandidaturaController {
      * @return List<VagaVO>
      * */
     @GetMapping(produces = {MediaType.APPLICATION_JSON})
-    public List<VagaVO> findAll() {
+    public List<CandidatoVO> findAll() {
         return service.getAll();
     }
 
@@ -37,8 +41,8 @@ public class CandidaturaController {
      * @return VagaVO
      * */
     @PostMapping(consumes = {MediaType.APPLICATION_JSON}, produces = {MediaType.APPLICATION_JSON})
-    public VagaVO create(@RequestBody VagaVO vaga) {
-        return service.create(vaga);
+    public CandidatoVO create(@RequestBody CandidatoVO candidato) {
+        return service.create(candidato);
     }
 
 }

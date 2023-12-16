@@ -1,5 +1,6 @@
 package br.com.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class Vaga extends BaseEntity{
     private Character nivel;
 
     @OneToMany(mappedBy = "vaga")
+    @JsonIgnore
     private List<VagaCandidato> candidaturas;
 
     public Vaga() {

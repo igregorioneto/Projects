@@ -1,5 +1,7 @@
 package br.com.backend.controllers;
 
+import br.com.backend.exception.ResourceNotFoundException;
+import br.com.backend.models.VagaCandidato;
 import br.com.backend.services.VagaCandidatoService;
 import br.com.backend.services.VagaService;
 import br.com.backend.util.MediaType;
@@ -29,7 +31,7 @@ public class VagaCandidatoController {
      * @return List<vagaCandidatoVO>
      * */
     @GetMapping(produces = {MediaType.APPLICATION_JSON})
-    public List<VagaCandidatoVO> findAll() {
+    public List<VagaCandidato> findAll() {
         return service.getAll();
     }
 
@@ -39,7 +41,12 @@ public class VagaCandidatoController {
      * @return vagaCandidatoVO
      * */
     @PostMapping(consumes = {MediaType.APPLICATION_JSON}, produces = {MediaType.APPLICATION_JSON})
-    public VagaCandidatoVO create(@RequestBody VagaCandidatoVO vagaCandidatoVO) {
-        return service.create(vagaCandidatoVO);
+    public VagaCandidato create(@RequestBody VagaCandidatoVO vagaCandidatoVO) {
+        VagaCandidato vagaCandidato = service.create(vagaCandidatoVO);
+        if (vagaCandidato == null) {
+            throw new ResourceNotFoundException("Unable to apply for a position!");
+        }
+        service.calculandoOScoreDoCandidatoBaseadoNaLocalidadeDaVaga(vagaCandidato);
+        return vagaCandidato;
     }
 }
