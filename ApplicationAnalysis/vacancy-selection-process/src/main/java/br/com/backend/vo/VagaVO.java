@@ -1,5 +1,6 @@
 package br.com.backend.vo;
 
+import br.com.backend.enums.Localidade;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -21,7 +22,7 @@ public class VagaVO implements Serializable {
     private String empresa;
     private String titulo;
     private String descricao;
-    private Character localizacao;
+    private Localidade localizacao;
     private Character nivel;
 
     public VagaVO() {
@@ -59,11 +60,11 @@ public class VagaVO implements Serializable {
         this.descricao = descricao;
     }
 
-    public Character getLocalizacao() {
+    public Localidade getLocalizacao() {
         return localizacao;
     }
 
-    public void setLocalizacao(Character localizacao) {
+    public void setLocalizacao(Localidade localizacao) {
         this.localizacao = localizacao;
     }
 
@@ -80,11 +81,11 @@ public class VagaVO implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         VagaVO vagaVO = (VagaVO) o;
-        return Objects.equals(empresa, vagaVO.empresa) && Objects.equals(titulo, vagaVO.titulo) && Objects.equals(descricao, vagaVO.descricao) && Objects.equals(localizacao, vagaVO.localizacao) && Objects.equals(nivel, vagaVO.nivel);
+        return Objects.equals(key, vagaVO.key) && Objects.equals(empresa, vagaVO.empresa) && Objects.equals(titulo, vagaVO.titulo) && Objects.equals(descricao, vagaVO.descricao) && localizacao == vagaVO.localizacao && Objects.equals(nivel, vagaVO.nivel);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(empresa, titulo, descricao, localizacao, nivel);
+        return Objects.hash(key, empresa, titulo, descricao, localizacao, nivel);
     }
 }

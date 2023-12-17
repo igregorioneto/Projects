@@ -1,5 +1,6 @@
 package br.com.backend.models;
 
+import br.com.backend.enums.Localidade;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -24,7 +25,7 @@ public class Vaga extends BaseEntity{
     @Column(length = 100, nullable = false)
     private String descricao;
     @Column(length = 1, nullable = false)
-    private Character localizacao;
+    private Localidade localizacao;
     @Column(length = 1, nullable = false)
     private Character nivel;
 
@@ -59,11 +60,11 @@ public class Vaga extends BaseEntity{
         this.descricao = descricao;
     }
 
-    public Character getLocalizacao() {
+    public Localidade getLocalizacao() {
         return localizacao;
     }
 
-    public void setLocalizacao(Character localizacao) {
+    public void setLocalizacao(Localidade localizacao) {
         this.localizacao = localizacao;
     }
 
@@ -88,7 +89,7 @@ public class Vaga extends BaseEntity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vaga vaga = (Vaga) o;
-        return Objects.equals(empresa, vaga.empresa) && Objects.equals(titulo, vaga.titulo) && Objects.equals(descricao, vaga.descricao) && Objects.equals(localizacao, vaga.localizacao) && Objects.equals(nivel, vaga.nivel) && Objects.equals(candidaturas, vaga.candidaturas);
+        return Objects.equals(empresa, vaga.empresa) && Objects.equals(titulo, vaga.titulo) && Objects.equals(descricao, vaga.descricao) && localizacao == vaga.localizacao && Objects.equals(nivel, vaga.nivel) && Objects.equals(candidaturas, vaga.candidaturas);
     }
 
     @Override

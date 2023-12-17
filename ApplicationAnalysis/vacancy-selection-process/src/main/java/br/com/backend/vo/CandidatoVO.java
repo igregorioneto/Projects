@@ -1,5 +1,6 @@
 package br.com.backend.vo;
 
+import br.com.backend.enums.Localidade;
 import br.com.backend.models.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -24,7 +25,7 @@ public class CandidatoVO implements Serializable {
     private Long key;
     private String nome;
     private String profissao;
-    private Character localizacao;
+    private Localidade localizacao;
     private Character nivel;
 
     public CandidatoVO() {
@@ -54,11 +55,11 @@ public class CandidatoVO implements Serializable {
         this.profissao = profissao;
     }
 
-    public Character getLocalizacao() {
+    public Localidade getLocalizacao() {
         return localizacao;
     }
 
-    public void setLocalizacao(Character localizacao) {
+    public void setLocalizacao(Localidade localizacao) {
         this.localizacao = localizacao;
     }
 
@@ -75,7 +76,7 @@ public class CandidatoVO implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CandidatoVO that = (CandidatoVO) o;
-        return Objects.equals(key, that.key) && Objects.equals(nome, that.nome) && Objects.equals(profissao, that.profissao) && Objects.equals(localizacao, that.localizacao) && Objects.equals(nivel, that.nivel);
+        return Objects.equals(key, that.key) && Objects.equals(nome, that.nome) && Objects.equals(profissao, that.profissao) && localizacao == that.localizacao && Objects.equals(nivel, that.nivel);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package br.com.backend.models;
 
+import br.com.backend.enums.Localidade;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +25,7 @@ public class Candidato extends BaseEntity{
     @Column(length = 80, nullable = false)
     private String profissao;
 
-    private Character localizacao;
+    private Localidade localizacao;
     @Column(length = 1, nullable = false)
     private Character nivel;
 
@@ -51,11 +52,11 @@ public class Candidato extends BaseEntity{
         this.profissao = profissao;
     }
 
-    public Character getLocalizacao() {
+    public Localidade getLocalizacao() {
         return localizacao;
     }
 
-    public void setLocalizacao(Character localizacao) {
+    public void setLocalizacao(Localidade localizacao) {
         this.localizacao = localizacao;
     }
 
@@ -80,7 +81,7 @@ public class Candidato extends BaseEntity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Candidato candidato = (Candidato) o;
-        return Objects.equals(nome, candidato.nome) && Objects.equals(profissao, candidato.profissao) && Objects.equals(localizacao, candidato.localizacao) && Objects.equals(nivel, candidato.nivel) && Objects.equals(candidaturas, candidato.candidaturas);
+        return Objects.equals(nome, candidato.nome) && Objects.equals(profissao, candidato.profissao) && localizacao == candidato.localizacao && Objects.equals(nivel, candidato.nivel) && Objects.equals(candidaturas, candidato.candidaturas);
     }
 
     @Override
