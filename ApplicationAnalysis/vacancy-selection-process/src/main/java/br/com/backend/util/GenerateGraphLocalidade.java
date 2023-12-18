@@ -18,28 +18,28 @@ import java.util.Map;
 * */
 @Component
 public class GenerateGraphLocalidade {
-
+    private List<GraphLocalidade> nodes = new ArrayList<>();
     @PostConstruct
     public void init() {
         System.out.println("A classe GenerateGraphLocalidade foi inicializada ao iniciar o Spring Boot.");
 
-        GraphLocalidade nodeA = new GraphLocalidade(Localidade.A);
-        GraphLocalidade nodeB = new GraphLocalidade(Localidade.B);
-        GraphLocalidade nodeC = new GraphLocalidade(Localidade.C);
-        GraphLocalidade nodeD = new GraphLocalidade(Localidade.D);
-        GraphLocalidade nodeE = new GraphLocalidade(Localidade.E);
-        GraphLocalidade nodeF = new GraphLocalidade(Localidade.F);
+        GraphLocalidade nodeA = criarNode(Localidade.A);
+        GraphLocalidade nodeB = criarNode(Localidade.B);
+        GraphLocalidade nodeC = criarNode(Localidade.C);
+        GraphLocalidade nodeD = criarNode(Localidade.D);
+        GraphLocalidade nodeE = criarNode(Localidade.E);
+        GraphLocalidade nodeF = criarNode(Localidade.F);
 
-        nodeA.addVizinho(nodeB, 5);
-        nodeB.addVizinho(nodeC, 7);
-        nodeB.addVizinho(nodeD, 3);
-        nodeC.addVizinho(nodeB, 7);
-        nodeC.addVizinho(nodeE, 4);
-        nodeD.addVizinho(nodeB, 3);
-        nodeD.addVizinho(nodeF, 8);
-        nodeE.addVizinho(nodeC, 4);
-        nodeE.addVizinho(nodeD, 10);
-        nodeF.addVizinho(nodeD, 8);
+        adicionarVizinhos(nodeA, nodeB, 5);
+        adicionarVizinhos(nodeB, nodeC, 7);
+        adicionarVizinhos(nodeB, nodeD, 3);
+        adicionarVizinhos(nodeC, nodeB, 7);
+        adicionarVizinhos(nodeC, nodeE, 4);
+        adicionarVizinhos(nodeD, nodeB, 3);
+        adicionarVizinhos(nodeD, nodeF, 8);
+        adicionarVizinhos(nodeE, nodeC, 4);
+        adicionarVizinhos(nodeE, nodeD, 10);
+        adicionarVizinhos(nodeF, nodeD, 8);
 
         System.out.println("Vizinhos de B");
         for (Map.Entry<GraphLocalidade, Integer> vizinho:nodeB.vizinhos.entrySet()) {
@@ -51,5 +51,20 @@ public class GenerateGraphLocalidade {
         for (Localidade e:GraphLocalidade.caminho) {
             System.out.print(e.getLocalidade() + " ");
         }
+        System.out.println();
+    }
+
+    private GraphLocalidade criarNode(Localidade local) {
+        GraphLocalidade node = new GraphLocalidade(local);
+        nodes.add(node);
+        return node;
+    }
+
+    private void adicionarVizinhos(GraphLocalidade origem, GraphLocalidade destino, int val) {
+        origem.addVizinho(destino, val);
+    }
+
+    public List<GraphLocalidade> getNodes() {
+        return nodes;
     }
 }

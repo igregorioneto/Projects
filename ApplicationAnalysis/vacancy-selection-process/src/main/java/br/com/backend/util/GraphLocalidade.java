@@ -2,6 +2,7 @@ package br.com.backend.util;
 
 import br.com.backend.enums.Localidade;
 import org.springframework.cglib.core.Local;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,4 +54,7 @@ public class GraphLocalidade {
         caminho.remove(caminho.size() - 1);
     }
 
+    public Localidade getLocal() {
+        return local;
+    }
 }

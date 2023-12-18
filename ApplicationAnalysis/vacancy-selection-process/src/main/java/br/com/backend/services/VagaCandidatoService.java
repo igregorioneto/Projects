@@ -1,5 +1,6 @@
 package br.com.backend.services;
 
+import br.com.backend.enums.Localidade;
 import br.com.backend.exception.ResourceNotFoundException;
 import br.com.backend.mapper.VoMapper;
 import br.com.backend.models.Candidato;
@@ -8,6 +9,8 @@ import br.com.backend.models.VagaCandidato;
 import br.com.backend.repositories.CandidatoRepository;
 import br.com.backend.repositories.VagaCandidatoRepository;
 import br.com.backend.repositories.VagaRepository;
+import br.com.backend.util.GenerateGraphLocalidade;
+import br.com.backend.util.GraphLocalidade;
 import br.com.backend.vo.VagaCandidatoVO;
 import br.com.backend.vo.VagaVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +78,9 @@ public class VagaCandidatoService {
     * @return
     * */
     public void calculandoOScoreDoCandidatoBaseadoNaLocalidadeDaVaga(VagaCandidato vagaCandidato) {
-
+        GenerateGraphLocalidade g = new GenerateGraphLocalidade();
+        for (GraphLocalidade e:g.getNodes()) {
+            System.out.println(e.getLocal() + " ");
+        }
     }
 }
